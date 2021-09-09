@@ -17,13 +17,16 @@ defmodule ElixirTestAsync do
     # Summarise the calls
     Enum.count(responses)
       |> IO.inspect(label: "Total API calls attempted" )
-    Enum.count(responses,  fn x ->
-      case x do
-        {:ok, _} -> true
-        _default -> false
-      end
-    end)
+
+    Enum.count(responses, &is_ok/1)
       |> IO.inspect(label: "Total returned :ok" )
+  end
+
+  defp is_ok(x) do
+    case x do
+      {:ok, _} -> true
+      _default -> false
+    end
   end
 
 end
