@@ -8,11 +8,12 @@ defmodule ApiCaller do
     recv_timeout: 2500
   ]
 
-  def get() do
-    @url
-    |> HTTPoison.get([], @options)
-    |> parse_response()
-    |> IO.inspect()
+  def get(id) do
+    response = @url
+      |> HTTPoison.get([], @options)
+      |> parse_response()
+      |> IO.inspect(label: id)
+    response
   end
 
   # Returned 200 - OK
@@ -26,16 +27,17 @@ defmodule ApiCaller do
   end
 
   # Connect Timeout case. See https://github.com/edgurgel/httpoison/issues/215#issuecomment-274616923
-  defp parse_response({:error, :connect_timeout}) do
+  defp parse_response({:error, %HTTPoison.Error{id: nil, reason: :connect_timeout}}) do
     {:error, "Connect Timeout"}
   end
 
   # Receive Timeout case. See https://github.com/edgurgel/httpoison/issues/215#issuecomment-274616923
-  defp parse_response({:error, :timeout}) do
+  defp parse_response({:error, %HTTPoison.Error{id: nil, reason: :timeout}}) do
     {:error, "Receive Timeout"}
   end
 
-  defp parse_response(_) do
+  defp parse_response(any) do
+    IO.puts "Unmatches response: #{IO.inspect(any)}"
     {:error, "Unknown"}
   end
 end
