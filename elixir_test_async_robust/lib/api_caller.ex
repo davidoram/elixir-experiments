@@ -5,7 +5,8 @@ defmodule ApiCaller do
     # Connection
     timeout: 100,
     # Receive
-    recv_timeout: 2500
+    # If make timeout smaller that server (5s), HTTPoison will return timeout
+    recv_timeout: 2_500
   ]
 
   def get(id) do
@@ -25,6 +26,12 @@ defmodule ApiCaller do
   defp parse_response({:ok, %HTTPoison.Response{body: _body, status_code: 500}}) do
     {:error, "Server error"}
   end
+
+  # TODO - Swap this in and the process will crash if an exception occurs
+  # # Returned 500 - Raise an exception
+  # defp parse_response({:ok, %HTTPoison.Response{body: _body, status_code: 500}}) do
+  #  raise "Boom!"
+  # end
 
   # Connect Timeout case. See https://github.com/edgurgel/httpoison/issues/215#issuecomment-274616923
   defp parse_response({:error, %HTTPoison.Error{id: nil, reason: :connect_timeout}}) do

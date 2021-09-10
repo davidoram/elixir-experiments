@@ -7,10 +7,16 @@ defmodule ElixirTestAsync do
       Task.async(fn ->  ApiCaller.get(2) end),
       Task.async(fn ->  ApiCaller.get(3) end),
       Task.async(fn ->  ApiCaller.get(4) end),
-      Task.async(fn ->  ApiCaller.get(5) end)
+      Task.async(fn ->  ApiCaller.get(5) end),
+      Task.async(fn ->  ApiCaller.get(6) end),
+      Task.async(fn ->  ApiCaller.get(7) end),
+      Task.async(fn ->  ApiCaller.get(8) end),
+      Task.async(fn ->  ApiCaller.get(9) end),
+      Task.async(fn ->  ApiCaller.get(10) end),
     ]
 
     # Wait for them to complete or timeout
+    # TODO - Make the timeout to small and will crash if Tasks not completed within that time
     responses = Task.await_many(tasks, 10_000)
       |> IO.inspect(label: "All finished" )
 
