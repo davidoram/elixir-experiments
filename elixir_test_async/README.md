@@ -8,3 +8,4 @@ mix escript.build
 ```
 
 
+Run the [slow server](https://github.com/davidoram/slow-server) as our test API backend
