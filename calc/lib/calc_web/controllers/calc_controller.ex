@@ -13,11 +13,6 @@ defmodule CalcWeb.CalcController do
         "mult" -> n1 * n2
       end
 
-      html(conn, """
-        <html>
-        <h1>Calculator!</h1>
-        <p>#{n1} #{op} #{n2} = #{answer}
-        </html>
-      """)
+      html(conn, "#{n1} #{op} #{n2} = #{answer}")
     end
   end

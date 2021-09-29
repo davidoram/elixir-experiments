@@ -1,13 +1,31 @@
 # Calc
 
-To start your Phoenix server:
+## Compile the app
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+Compile via
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+mix deps.get --only prod
+MIX_ENV=prod mix compile
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Then run
+
+`PORT=4000 MIX_ENV=prod mix phx.server`
+
+Test
+
+`curl http://localhost:4000/api/+/1/1`
+
+## Load test tool
+
+[Baton](https://github.com/americanexpress/baton), installed via  `go get -u github.com/americanexpress/baton`.
+
+Run `baton -z test.baton -c 25 -r 100000` to stress test the API
+
+- 25 concurrent requests
+- 100,000 requests total
+
 
 ## Learn more
 
