@@ -29,10 +29,10 @@ Run `baton -z test.baton -c 25 -r 100000` to stress test the API
 Will it keep running?
 
 `baton -u http://localhost:4000/api/div/100/0 -r 100000 -c 25`
-## Learn more
+## Questions to be answered
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- How should I code for problems?
+  - Do I add a bunch of defensive code?
+- What happens when it crashes?
+  - Can I log the crash
+  - Can I return an API response?
