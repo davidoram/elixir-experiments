@@ -35,4 +35,6 @@ Will it keep running?
   - Do I add a bunch of defensive code?
 - What happens when it crashes?
   - Can I log the crash
-  - Can I return an API response?
+  - Can I return an LC formatted API response?
+    - Yes - see 'handle_errors'
+- Know all possible data so our pattern matches work
