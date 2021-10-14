@@ -16,6 +16,7 @@ Test
 
 - ok `curl http://localhost:4000/api/+/1/1`
 - fail `curl http://localhost:4000/api/div/100/0`
+- Pass header `curl -H 'X-Interaction-ID: provided-blah-blah' http://localhost:4000/api/div/100/2`
 
 ## Load test tool
 

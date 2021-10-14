@@ -5,7 +5,7 @@ defmodule CalcWeb.Router do
 
   def my_logger(conn, _opts) do
     conn = Plug.Conn.register_before_send(conn, fn conn ->
-      Logger.info("Sent a #{conn.status} response")
+      Logger.metadata(http_status: conn.status)
       conn
     end)
     conn
@@ -32,6 +32,7 @@ defmodule CalcWeb.Router do
       interaction_id: "{uuid}"
     }
     response = Phoenix.json_library().encode_to_iodata!(data)
+    Logger.info("Calc error", http_response: Phoenix.json_library().encode!(data))
     send_resp(conn, 500, response)
   end
 
