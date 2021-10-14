@@ -17,7 +17,11 @@ config :calc, CalcWeb.Endpoint,
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:erl_level,
+            # :file, :function, :line,
+            :x_interaction_id,
+            :request_id, :http_status, :http_response]    # Decide what metadata to include on each log line
+                                                          # Configure Filebeat / Logstash to parse elixir style logs
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

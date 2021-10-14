@@ -29,6 +29,11 @@ defmodule CalcWeb.Endpoint do
   end
 
   plug Plug.RequestId
+
+  # Log x-interaction-id before  the Telemetry plug so incoming
+  # request log messages include the 'X-Interaction-ID'
+  plug InteractionIdPlug
+
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,

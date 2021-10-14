@@ -16,6 +16,7 @@ Test
 
 - ok `curl http://localhost:4000/api/+/1/1`
 - fail `curl http://localhost:4000/api/div/100/0`
+- Pass header `curl -H 'X-Interaction-ID: provided-blah-blah' http://localhost:4000/api/div/100/2`
 
 ## Load test tool
 
@@ -35,4 +36,6 @@ Will it keep running?
   - Do I add a bunch of defensive code?
 - What happens when it crashes?
   - Can I log the crash
-  - Can I return an API response?
+  - Can I return an LC formatted API response?
+    - Yes - see 'handle_errors'
+- Know all possible data so our pattern matches work
